@@ -4,9 +4,9 @@ from ultralytics import YOLO  # Đảm bảo đã cài: pip install ultralytics
 
 # ---- CẤU HÌNH ----
 # Đường dẫn file .pt trên máy bạn
-MODEL_PATH = r"D:\YOLOv11n\Packaging\weights\t1\best.pt"
+MODEL_PATH = r"D:\YOLOv11n\Packaging\weights\t1\weights\best.pt"
 # Link RTSP camera
-url = "rtsp://admin:BWKUYM@192.168.1.144:554/ch1/main"
+url = "rtsp://admin:CPSFLT@192.168.1.160:554/ch1/main"
 
 # 1. Load Model
 print("⏳ Đang tải model AI...")
@@ -33,7 +33,7 @@ while True:
 
     # 4. NHẬN DIỆN (Inference)
     # results trả về danh sách kết quả (thường chỉ lấy kết quả đầu tiên [0])
-    results = model.predict(frame_resized, conf=0.5, verbose=False)
+    results = model.predict(frame_resized, conf=0.6, verbose=False)
 
     # 5. VẼ KẾT QUẢ lên frame (vẽ box, label)
     # kết quả được vẽ trực tiếp lên một bản sao của frame

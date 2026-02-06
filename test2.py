@@ -8,6 +8,7 @@ import time
 
 # --- THIẾT LẬP HỆ THỐNG ---
 os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+print(torch.cuda.is_available())
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
 NAME_MAPPING = {
@@ -125,12 +126,12 @@ if __name__ == "__main__":
     print("Đang khởi tạo hệ thống giám sát...")
 
     # Load Models (Như cũ)
-    m_slot_t1 = YOLO(r"D:\YOLOv11n\test\weights\t1\stage1.pt")
-    m_slot_t2 = YOLO(r"D:\YOLOv11n\test\weights\t2\best.pt")
+    m_slot_t1 = YOLO(r"D:\YOLOv11n\Packaging\weights\weights\best.pt")
+    m_slot_t2 = YOLO(r"D:\YOLOv11n\test\weightT2.pt")
 
     # Load Model linh kiện (Như cũ)
-    m_comp = YOLO(r"D:\YOLOv11n\test\weights\t1\stage1.pt")
-    checkpoint = torch.load(r"D:\YOLOv11n\test\weights\t1\stage1.pth", map_location=device)
+    m_comp = YOLO(r"D:\YOLOv11n\Packaging\weights\weights\best.pt")
+    checkpoint = torch.load(r"D:\YOLOv11n\test\linh_kien_classifier.pth", map_location=device)
     if 'stage1' in checkpoint:
         try:
             m_comp.model.load_state_dict(checkpoint['stage1'], strict=True)
