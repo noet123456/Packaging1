@@ -4,7 +4,7 @@ from ultralytics import YOLO  # Đảm bảo đã cài: pip install ultralytics
 
 # ---- CẤU HÌNH ----
 # Đường dẫn file .pt trên máy bạn
-MODEL_PATH = r"D:\YOLOv11n\test\weights\t2\best.pt"
+MODEL_PATH = r"D:\YOLOv11n\Packaging\weights\t1\best.pt"
 # Link RTSP camera
 url = "rtsp://admin:BWKUYM@192.168.1.144:554/ch1/main"
 
