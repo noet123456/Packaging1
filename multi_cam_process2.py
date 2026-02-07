@@ -21,14 +21,14 @@ RTSP_URLS = [
 # Mapping tên linh kiện
 NAME_MAPPING = {
     'Component 1': 'mainboard', 'Component 2': 'J-Link JTAG',
-    'Component 3': 'Cam_bien_cd1', 'Component 4': 'Cam_bien_cd2', 'Component 5': 'Cam_bien_cd3',
+    'Component 3': 'Cam_bien_cd', 'Component 4': 'Cam_bien_cd', 'Component 5': 'Cam_bien_cd',
     'Component 6': 'tui_module', 'Component 7': 'day_cap_trang', 'Component 8': 'day_cap_den',
     'Component 9': 'cap_bet', 'Component 10': 'jumper_mau'
 }
 
 # Yêu cầu kiểm tra cho từng Camera (Index 0-3)
 CAM_REQUIREMENTS = {
-    0: ['Cam_bien_cd1', 'Cam_bien_cd2', 'Cam_bien_cd3'],
+    0: ['Cam_bien_cd', 'Cam_bien_cd', 'Cam_bien_cd'],
     1: ['mainboard', 'J-Link JTAG'],
     2: ['day_cap_den', 'cap_bet', 'jumper_mau'],
     3: ['day_cap_trang', 'tui_module']
@@ -73,7 +73,7 @@ def process_logic(frame, model, cam_idx, state_dict):
     # Bước quan quan trọng: Ép kích thước xử lý
     # imgsz=1024 giúp AI soi được linh kiện nhỏ ở khoảng cách xa
     h_orig, w_orig = frame.shape[:2]
-    results = model.predict(frame, conf=0.7, imgsz=1024, verbose=False, device=DEVICE)[0]
+    results = model.predict(frame, conf=0.5, imgsz=1024, verbose=False, device=DEVICE)[0]
 
     # Kích thước hiển thị chuẩn cho mỗi ô cam
     display_w, display_h = 640, 480
@@ -135,8 +135,8 @@ def process_logic(frame, model, cam_idx, state_dict):
 
 def main():
     print(f"--- Đang nạp Model trên {DEVICE} ---")
-    model_t1 = YOLO(r"D:\Packaging\weightsmoi\t1\best.pt")
-    model_t2 = YOLO(r"D:\Packaging\weightsmoi\t2\weights3\best.pt")
+    model_t1 = YOLO(r"D:\YOLOv11n\Packaging\weights\t1\weights\best.pt")
+    model_t2 = YOLO(r"D:\YOLOv11n\Packaging\weights\t2\weights3\best.pt")
 
     print("--- Đang kết nối Camera ---")
     cams = [CameraStream(url, f"C{i + 1}") for i, url in enumerate(RTSP_URLS)]
