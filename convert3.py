@@ -40,9 +40,9 @@ def convert_labelme_to_yolo_obb(json_path, output_dir, class_mapping):
 
 
 # --- Cấu hình ---
-input_json_folder = r"E:\Downloads\2(việt)-20260206T100544Z-1-001\2(việt)\json"
-output_txt_folder = r"E:\Downloads\2(việt)-20260206T100544Z-1-001\2(việt)\labels"
-classes = {"Slot 1": 0, "Slot 2": 1, "Slot 3": 2, "Slot 4": 3, "Slot 5": 4, "Component 1": 5, "Component 2": 6, "Component 3": 7, "Component 4": 8, "Component 5": 9}  # Thay đổi theo labels của bạn
+input_json_folder = r"D:\YOLOv11n\Packaging\output_frames2\labels"
+output_txt_folder = r"D:\YOLOv11n\Packaging\output_frames2\labelstxt"
+classes = {"Slot 6": 0, "Slot 7": 1, "Slot 8": 2, "Slot 9": 3, "Slot 10": 4, "Component 6": 5, "Component 7": 6, "Component 8": 7, "Component 9": 8, "Component 10": 9}  # Thay đổi theo labels của bạn
 
 if not os.path.exists(output_txt_folder):
     os.makedirs(output_txt_folder)

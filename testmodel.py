@@ -33,7 +33,7 @@ while True:
 
     # 4. NHẬN DIỆN (Inference)
     # results trả về danh sách kết quả (thường chỉ lấy kết quả đầu tiên [0])
-    results = model.predict(frame_resized, conf=0.6, verbose=False)
+    results = model.predict(frame_resized, conf=0.7, verbose=False)
 
     # 5. VẼ KẾT QUẢ lên frame (vẽ box, label)
     # kết quả được vẽ trực tiếp lên một bản sao của frame
