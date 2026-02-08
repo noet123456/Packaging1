@@ -123,6 +123,8 @@ def process_logic(frame, model, cam_idx, state_dict, collected_items):
 
             if "Slot" in raw_name:
                 cv2.polylines(annotated, [poly], True, (255, 255, 0), 2)
+                cv2.putText(annotated, clean_name, (poly[0][0], poly[0][1] - 5), 
+                           cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 0), 2)
             else:
                 current_found.append(clean_name)
                 cv2.polylines(annotated, [poly], True, (0, 255, 0), 2)
@@ -133,14 +135,15 @@ def process_logic(frame, model, cam_idx, state_dict, collected_items):
     temp_req = required.copy()
     missing = []
     found_copy = current_found.copy()
+    global MISSING_FINAL
+    MISSING_FINAL.append(temp_req)
     
     for req_item in temp_req:
         if req_item in found_copy:
             found_copy.remove(req_item)
+            MISSING_FINAL.remove(req_item)
         else:
             missing.append(req_item)
-            global MISSING_FINAL
-            MISSING_FINAL.append(req_item)
             
     is_complete = (len(missing) == 0)
     curr_time = time.time()
