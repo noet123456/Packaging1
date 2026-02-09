@@ -101,7 +101,7 @@ def show_final_result(image, passed, missing_cams):
     
     return image
 
-def process_logic(frame, model, cam_idx, state_dict, collected_items):
+def process_logic(frame, model, cam_idx, state_dict, collected_items):  #104 - 162
     state = state_dict.get(cam_idx, {'start': 0, 'ok': False, 'last': False, 'frozen_frame': None})
     
     if state['ok'] and state['frozen_frame'] is not None:
